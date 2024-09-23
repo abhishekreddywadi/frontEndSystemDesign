@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>welcome to websocket</h1>
+    <div id="message"></div>
+    <form action="" id="form">
+      <input type="text" id="input" />
+      <button id="button">send</button>
+    </form>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = window.io();
+      const form = document.getElementById("form");
+      const input = document.getElementById("input");
+      const button = document.getElementById("message");
+      form.addEventListener("submit", (e) => {
+        event.preventDefault();
+        const message = input.value;
+        console.log(message);
+        socket.emit("chat", message);
+        input.value = "";
+      });
+      socket.on("chat", (chatMessage) => {
+        const p = document.createElement("li");
+        p.textContent = chatMessage;
+        button.appendChild(p);
+        window.scrollTo(0, document.body.scrollHeight);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XSS Test</title>
+  </head>
+  <body>
+    <h1>XSS Vulnerability Test</h1>
+    <form method="GET" action="">
+      <label for="comment">Enter your comment:</label><br />
+      <input type="text" id="comment" name="comment" /><br /><br />
+      <input type="submit" value="Submit" />
+    </form>
+
+    <p>Your comment:</p>
+    <p id="output">
+      <!-- This is where the user's input will be displayed -->
+      <script>
+        const params = new URLSearchParams(window.location.search);
+        document.getElementById("output").innerHTML = params.get("comment");
+      </script>
+    </p>
+  </body>
+</html>

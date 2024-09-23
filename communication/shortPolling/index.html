@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>short pooling by nfs</h1>
+    <div class="container"></div>
+
+    <script>
+      const getData = async () => {
+        const container = document.querySelector(".container");
+        try {
+          const response = await fetch("/getData");
+          const data = await response.json();
+          container.innerHTML = data.data;
+        } catch (e) {
+          console.error("Error fetching data:", e);
+        }
+      };
+
+      // Short pooling by NFS
+
+      const shortPooling = () => {
+        let intervalId = setInterval(() => {
+          let data = getData(); // Assuming getData() returns the data you need
+          if (data) {
+            // Check if the data meets your condition
+            clearInterval(intervalId); // Stop the interval once you have the data
+          }
+        }, 5000);
+      };
+
+      shortPooling();
+    </script>
+  </body>
+</html>

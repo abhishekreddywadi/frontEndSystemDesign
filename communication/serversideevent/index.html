@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    server side event handling(sse)
+    <h1 id="num"></h1>
+  </body>
+  <script>
+    const eventSource = new EventSource("/sse");
+    const num = document.getElementById("num");
+    eventSource.onmessage = (event) => {
+      console.log(event.data); // Log the received data to the console.
+      num.innerHTML = event.data;
+    };
+  </script>
+</html>

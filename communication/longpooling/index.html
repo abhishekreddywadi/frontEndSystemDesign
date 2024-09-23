@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>long pooling by nfs</h1>
+    <div class="container"></div>
+
+    <script>
+      const getData = async (lastData) => {
+        const container = document.querySelector(".container");
+        try {
+          const response = await fetch("/getData?lastData=" + lastData);
+          const data = await response.json();
+          container.innerHTML = data.data;
+          getData(data.data);
+        } catch (e) {
+          console.error("Error fetching data:", e);
+        }
+      };
+      getData();
+    </script>
+  </body>
+</html>
