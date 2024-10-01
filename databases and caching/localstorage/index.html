@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(209, 46, 46);
+      }
+    </style>
+  </head>
+  <body>
+    <button>toggle to change the color</button>
+
+    <script>
+      const button = document.querySelector("button");
+      const body = document.querySelector("body");
+      let pressed = localStorage.getItem("mode") ? true : false;
+      body.style.backgroundColor = localStorage.getItem("mode");
+      button.addEventListener("click", (e) => {
+        if (pressed) {
+          window.localStorage.setItem("mode", "green");
+          body.style.backgroundColor = localStorage.getItem("mode");
+        } else {
+          window.localStorage.setItem("mode", "red");
+          body.style.backgroundColor = localStorage.getItem("mode");
+        }
+        pressed = !pressed;
+      });
+    </script>
+  </body>
+</html>

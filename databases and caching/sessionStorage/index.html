@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" placeholder="write a note " />
+    <button onclick="submit()">Submit</button>
+    <ul id="notes"></ul>
+    <script>
+      const newq = [];
+      function submit() {
+        const note = [];
+        var input = document.querySelector("input").value;
+        note.push(input);
+        newq.push(note);
+        input = "";
+
+        note.map((notes, index) => {
+          let li = document.createElement("li");
+          let button = document.createElement("button");
+          button.textContent = "Delete";
+          button.onclick = function () {
+            li.remove();
+
+            // localStorage.setItem("notes", JSON.stringify(notes));
+          };
+          li.textContent = notes;
+          li.appendChild(button);
+          document.getElementById("notes").appendChild(li);
+        });
+        // let notes = JSON.parse(localStorage.getItem("notes")) || [];
+        console.log(note);
+      }
+      console.log(newq);
+    </script>
+  </body>
+</html>
